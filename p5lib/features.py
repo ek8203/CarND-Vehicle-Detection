@@ -81,27 +81,22 @@ def extract_features(imgs, color_space='RGB', spatial_size=(32, 32),
         # Read in each one by one
 #        image = mpimg.imread(file)
         image = cv2.imread(file)
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
         
         # apply color conversion if other than 'RGB'
         if color_space != 'RGB':
             if color_space == 'HSV':
-                #feature_image = cv2.cvtColor(image, cv2.COLOR_RGB2HSV)
-                feature_image = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+                feature_image = cv2.cvtColor(image, cv2.COLOR_RGB2HSV)
             elif color_space == 'LUV':
-                #feature_image = cv2.cvtColor(image, cv2.COLOR_RGB2LUV)
-                feature_image = cv2.cvtColor(image, cv2.COLOR_BGR2LUV)
+                feature_image = cv2.cvtColor(image, cv2.COLOR_RGB2LUV)
             elif color_space == 'HLS':
-                #feature_image = cv2.cvtColor(image, cv2.COLOR_RGB2HLS)
-                feature_image = cv2.cvtColor(image, cv2.COLOR_BGR2HLS)
+                feature_image = cv2.cvtColor(image, cv2.COLOR_RGB2HLS)
             elif color_space == 'YUV':
-                #feature_image = cv2.cvtColor(image, cv2.COLOR_RGB2YUV)
-                feature_image = cv2.cvtColor(image, cv2.COLOR_BGR2YUV)
+                feature_image = cv2.cvtColor(image, cv2.COLOR_RGB2YUV)
             elif color_space == 'YCrCb':
-                #feature_image = cv2.cvtColor(image, cv2.COLOR_RGB2YCrCb)
-                feature_image = cv2.cvtColor(image, cv2.COLOR_BGR2YCrCb)
+                feature_image = cv2.cvtColor(image, cv2.COLOR_RGB2YCrCb)
         else: 
-            #feature_image = np.copy(image)      
-            feature_image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+            feature_image = np.copy(image)      
 
         if spatial_feat == True:
             spatial_features = bin_spatial(feature_image, size=spatial_size)
