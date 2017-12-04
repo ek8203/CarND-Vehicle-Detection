@@ -28,13 +28,15 @@ The actual project code with solution is provided in the IPython notebook [vehic
 
 **1. Explain how (and identify where in your code) you extracted HOG features from the training images.**
 
-The code for this step is contained in the first code cell of the IPython notebook (or in lines # through # of the file called some_file.py).
+I started by reading in all the vehicle and non-vehicle images. The code for this step is in cells `1, 2 and 3` and the helper functions are in files [data_preparation.py](p5lib/data_preparation.py) and [visualize.py](p5lib/visualize.py) located in [p5lib/](p5lib/) folder.   
+In total I loaded `8792 vehicle` and `8968 non-vehicle` image files, each image of size `(64, 64, 3)` and data type `float32`. Here is an example of one of the vehicle and non-vehicle classes:
+![car_notcar_example.jpg](output_images/car_notcar_example.jpg)
 
-I started by reading in all the vehicle and non-vehicle images. Here is an example of one of each of the vehicle and non-vehicle classes:
+I then explored different color spaces and different `skimage.hog()` parameters (`orientations`, `pixels_per_cell`, and `cells_per_block`). I grabbed random images from each of the two classes and displayed them to get a feel for what the skimage.hog() output looks like. The code is in cells `4` and `5` of the notebook and python module `[features.py](p5lib/features.py)`.
 
-I then explored different color spaces and different skimage.hog() parameters (orientations, pixels_per_cell, and cells_per_block). I grabbed random images from each of the two classes and displayed them to get a feel for what the skimage.hog() output looks like.
-
-Here is an example using the YCrCb color space and HOG parameters of orientations=8, pixels_per_cell=(8, 8) and cells_per_block=(2, 2):
+Here is an example using the `YCrCb` color space and HOG parameters of `orientations=9`, `pixels_per_cell=(8, 8)` and `cells_per_block=(2, 2)`:
+![spatially_binned.jpg](output_images/spatially_binned.jpg)
+![hog_visual.jpg](output_images/hog_visual.jpg)
 
 **2. Explain how you settled on your final choice of HOG parameters.**
 
