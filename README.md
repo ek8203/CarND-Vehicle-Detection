@@ -25,7 +25,7 @@ A detail witeup of the projects can be found in [writeup_report.md](writeup_repo
 * [p5lib/](p5lib/) folder - Python modules imported by the notebook:
    - [features.py](p5lib/features.py) - a module with feature extraction functions
    - [detection.py](p5lib/detection.py) -a module with vehicle detection functions
-   - [data_preparation.py](p5lib/data_preparation.py) - data load/explore helper function
+   - [data_preparation.py](p5lib/data_preparation.py) - data load/explore helper functions
    - [visualize.py](p5lib/visualize.py) - visualization helper functions
 * [writeup_report.md](writeup_report.md) - The project writeup - a markdown file that includes the [rubric](https://review.udacity.com/#!/rubrics/513/view) points as well as description of how each point was addressed in the project.
 * [project_video_output.mp4](project_video_output.mp4) - The final video output.
