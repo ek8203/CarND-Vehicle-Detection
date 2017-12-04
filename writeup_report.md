@@ -15,7 +15,7 @@ The goals / steps of this project are the following:
 * Run the pipeline on a video stream (start with the [test_video.mp4](test_video.mp4) and later implement on full [project_video.mp4](project_video.mp4) and create a heat map of recurring detections frame by frame to reject outliers and follow detected vehicles.
 * Estimate a bounding box for vehicles detected.
 
-The actual project code with solution is provided in the IPython notebook [vehicle_detection.ipynb](vehicle_detection.ipynb) and python modules in [p5lib/](p5lib/) folder.
+The actual project code with solution is provided in the IPython notebook [vehicle_detection.ipynb](vehicle_detection.ipynb) and python modules in [p5lib/](p5lib/) folder. The majority of the project code was adopted from the class examples and quizes.  
 
 ---
 
@@ -61,6 +61,15 @@ I trained the classifier using Linear SVM and the best train accuracy was 0.9927
 
 I used HOG sub-sampling window search to find vehicles in the images. The code of this step is in the notebook cells `12` and `13` and the python module [detection.py](p5lib/detection.py). To get enough overlapping bounding boxes for the detected cars I used 3 different scales of the sliding windows: `1.0`, `1.5` and `2.0`. Here is an example:
 ![hog_subsampling_example.jpg](output_images/hog_subsampling_example.jpg)
+
+The below table shows the setting for multi-scale window search:
+
+| ystart | ystop | scale | 
+|:------:|:------:|:----:| 
+|380|580|1.0|
+|400|600|1.5|
+|460|660|2.0|
+
 I created heatmaps by combining the overlapped boxes and thresholded the heatmap to exclude false positives. Then I used `scipy.ndimage.measurements.label` function to identify individual blobs in the heatmap. Then I constructed bounding boxes to cover the area of each blob detected. Here is an example:
 ![position_heatmap.jpg](output_images/position_heatmap.jpg)
 
@@ -80,3 +89,9 @@ Here's a [link to my video result](project_video_output.mp4)
 **1. Briefly discuss any problems / issues you faced in your implementation of this project. Where will your pipeline likely fail? What could you do to make it more robust?**
 
 Here I'll talk about the approach I took, what techniques I used, what worked and why, where the pipeline might fail and how I might improve it if I were going to pursue this project further.
+
+First, I have to admit that my final output video does not look great. Even so the classifier training accuracy was high enough, the video processing pipeline requires more work in order to get better results.
+
+Second, I was expressed by the performance of the Linear SVM classifier. Actually I also tried SVM parameter tuning by running GridSearchCV for a simple choice of kernel and C. It took ages to complete the tuning and the resulting classifier was so big that made it alsolutely not practical to use. The Linear SVM classifier is really light and fast, but it also requires a proper nomalization of the input data to get good result. Also the sub-sampling and heatmap thresholding is an elegant method that can be applied to a wide variety of tasks. 
+
+In conclusion I am thankful for that exciting journey and I wish to have more time to get better results.  
